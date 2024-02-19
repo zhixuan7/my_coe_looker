@@ -41,3 +41,4 @@ explore: office {}
 
 explore: office_view_zone {}
 
+explore: office_view_hour {}

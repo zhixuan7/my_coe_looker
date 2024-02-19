@@ -56,10 +56,20 @@ view: office_view_minute {
   dimension: count_diff_str {
     type:  string
     sql:  ${TABLE}.count_diff_str ;;
+
   }
   measure: count_diff {
     type: sum
     sql: ${TABLE}.count_diff ;;
+    html:
+     {% if value > 0 %}
+         <p style="color: green">▲  {{ rendered_value }}</p>
+      {% elsif value < 0 %}
+        <p style="color: red">▼  {{ rendered_value }}</p>
+      {% else %}
+        <p style="color: #000000">{{ rendered_value }}</p>
+      {% endif %}
+      ;;
   }
   dimension: last_five_minute {
     type: yesno

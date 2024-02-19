@@ -21,10 +21,18 @@ view: office_view_zone {
     sql: ${TABLE}.time ;;
   }
 
+  dimension_group: time2 {
+    type: time
+    convert_tz: yes
+    timeframes: ["date", "week","month", "year", "hour", "minute", "second"]
+    sql: ${TABLE}.time ;;
+  }
+
   dimension: total_person_count {
     type: number
     sql: ${TABLE}.total_person_count ;;
   }
+
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
@@ -33,6 +41,7 @@ view: office_view_zone {
   measure: total_total_person_count {
     type: sum
     sql: ${total_person_count} ;;  }
+
   measure: average_total_person_count {
     type: average
     sql: ${total_person_count} ;;  }
